@@ -7,8 +7,7 @@ class Scraper
 attr_accessor :students
 
   def self.scrape_index_page(index_url)
-    index_html = open(index_url)
-    index_doc = Nokogiri::HTML(index_html)
+    index_doc = Nokogiri::HTML(open(index_url)
     student_cards = index_doc.css(".student-card")
     students = []
     student_cards.each do |student_card|
