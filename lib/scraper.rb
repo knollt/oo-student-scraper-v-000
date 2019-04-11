@@ -11,7 +11,7 @@ attr_accessor :students
     index_doc = Nokogiri::HTML(index_html)
     student_cards = index_doc.css(".student-card")
     students = []
-    student_cards.collect do |student_card|
+    student_cards.each do |student_card|
       students << {
         :name => student_card.css("h4.student-name").text,
         :location => student_card.css("p.student-location").text,
