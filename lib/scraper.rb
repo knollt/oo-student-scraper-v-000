@@ -10,11 +10,13 @@ attr_accessor :students
     index_doc = Nokogiri::HTML(open(index_url)
     students = []
     student_cards = index_doc.css(".student-card").each do |student_card|
-      students << {
-        :name => student_card.css("h4.student-name").text,
-        :location => student_card.css("p.student-location").text,
-        :profile_url => "./fixtures/student-site/" + student_card.css("a").attribute("href").value
-        }
+      name = student.css(".student-name").text
+      location = student.css(".student-location").text
+      profile_url = student.css("a").attribute("href").value
+      student_info = {:name => name,
+                :location => location,
+                :profile_url => profile_url}
+      students << student_info
     end
     students
   end
